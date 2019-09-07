@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import App from './components/app';
+
 
 
 const luckyNumber = () => {
@@ -45,8 +47,7 @@ const user = {
 
 
 ReactDOM.render(
-    <Greeting {...user} />, //this tells to RENDER the component Greeting
-    
+    <App/>, 
     document.getElementById('root')
 );
 
