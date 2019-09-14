@@ -25,14 +25,17 @@ class Stopwatch extends Component {
         const {elapsed, status} = this.state;
 
         return (
-        <div>
-            <h1><Time elapsed={elapsed}/></h1> 
+        <div className="jumbotron">
+            <h1 className="display-3"><Time elapsed={elapsed}/></h1> 
             {/* //Why not {this.elapsed.status} ? */}
-            <p>{status}</p>  
+            <hr className="my-3"/>
+            <p className="lead text-center">{status}</p>  
             {/* //Why not {this.state.status} ? */}
-            <button onClick={this.start}>Start</button>
-            <button onClick={this.stop}>Stop</button>
-            <button onClick={this.reset}>Reset</button>
+            <p className="text-center">
+            <button className="btn btn-outline-success mx-3" onClick={this.start}>Start</button>
+            <button className="btn btn-outline-danger mx-3" onClick={this.stop}>Stop</button>
+            <button className="btn btn-outline-warning mx-3" onClick={this.reset}>Reset</button>
+            </p>
 
             {/* //<h1>hi {this.props.name</h1> */}
         </div>
@@ -40,11 +43,22 @@ class Stopwatch extends Component {
     }
 
     start () {
+        const {start, elapsed} = this.state;
+        let newStart = new Date().getTime();
+
+        if (start) {
+            newStart = newStart - elapsed;
+        }
+
         this.setState({
             status: "running",
-            start: new Date().getTime()
+            start: newStart
         });
-        setTimeout(this.update, 10);
+
+        setTimeout(this.update, 100);      
+        
+
+        
     }
 
     stop () {
